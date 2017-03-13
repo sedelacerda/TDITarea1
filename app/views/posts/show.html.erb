@@ -1,37 +1,56 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<strong> <h1> <%= @post.title %> </h1> </strong>
+  <p id="notice"><%= notice %></p>
 
-<h3> <%= @post.descent %> </h3>
+  <!-- Main component for a primary marketing message or call to action -->
+  <div class="jumbotron">
 
-<%= @post.body %>
+    <strong> <h1> <%= @post.title %> </h1> </strong>
 
-</br>
-</br>
+    <h3> <%= @post.descent %> </h3>
 
-<%= form_for(Comment.new, :url => post_comments_path(@post)) do |f| %>
-<div class="field">
-  <%= f.label :autor %>
-  <%= f.text_field :author, :required => true %>
+    <%= @post.body %>
+    <br/>
+    <br/>
+    <%= link_to 'Editar', edit_post_path(@post) %> |
+    <a href="javascript:history.back()">Volver</a>
+
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <strong> Nuevo comentario </strong>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <%= form_for(Comment.new, :url => post_comments_path(@post)) do |f| %>
+      <div class="field">
+        <%= f.label :autor %>
+        <%= f.text_field :author, :class => "form-control", :required => true %>
+      </div>
+      <div class="field">
+        <%= f.label :mensaje %>
+        <%= f.text_area :content, :class => "form-control", :required => true %>
+      </div>
+      <div class="actions">
+        <%= f.submit :Insertar, class: 'btn btn-success pull-right' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+  <% @comments.each do |comment| %>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <strong> <%= comment.author %> </strong> - <%= comment.created_at.strftime("%d/%m/%Y a las %H:%M") %>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <%= comment.content %>
+    </div>
+  </div>
+  <% end %>
+
 </div>
-<div class="field">
-  <%= f.label :mensaje %>
-  <%= f.text_field :content, :required => true %>
-</div>
-<div class="actions">
-  <%= f.submit %>
-</div>
-<% end %>
-
-<% @comments.each do |comment| %>
-  </br>
-  <strong> <%= comment.author %> </strong> - <%= comment.created_at.strftime("%d/%m/%Y a las %H:%M") %>
-  </br>
-  <%= comment.content %>
-  </br>
-<% end %>
-
-<br/>
-<br/>
-<%= link_to 'Editar', edit_post_path(@post) %> |
-<a href="javascript:history.back()">Volver</a>

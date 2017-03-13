@@ -18,11 +18,10 @@ h1 {
 }
 </style>
 
-<p id="notice"><%= notice %></p>
-
 <% @posts.each do |post| %>
 <div class="container">
 
+  <p id="notice"><%= notice %></p>
   <!-- Main component for a primary marketing message or call to action -->
   <div class="jumbotron">
     <h1><%= post.title %></h1> <span class="label label-primary label-as-badge lb-md"><%= post.comments.count %></span>
@@ -34,6 +33,7 @@ h1 {
         <%= post.body %>
       <% end %>
     </h4>
+    <h5 style="color:gray" align="right"><%= post.created_at.strftime("%d/%m/%Y a las %H:%M") %></h5>
     <p>
       <%= link_to 'Ver noticia »', post, :class => "btn btn-lg btn-primary" %>
     </p>
