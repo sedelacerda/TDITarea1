@@ -1,43 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<strong> <h1> <%= @post.title %> </h1> </strong>
 
-<p>
-  <strong>Descent:</strong>
-  <%= @post.descent %>
-</p>
+<h3> <%= @post.descent %> </h3>
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
+<%= @post.body %>
+
+</br>
+</br>
 
 <%= form_for(Comment.new, :url => post_comments_path(@post)) do |f| %>
 <div class="field">
-  <%= f.label :author %>
-  <%= f.text_field :author %>
+  <%= f.label :autor %>
+  <%= f.text_field :author, :required => true %>
 </div>
 <div class="field">
-  <%= f.label :content %>
-  <%= f.text_field :content %>
+  <%= f.label :mensaje %>
+  <%= f.text_field :content, :required => true %>
 </div>
 <div class="actions">
   <%= f.submit %>
 </div>
 <% end %>
 
-
 <% @comments.each do |comment| %>
-  <br/>
+  </br>
   <strong> <%= comment.author %> </strong> - <%= comment.created_at.strftime("%d/%m/%Y a las %H:%M") %>
   </br>
   <%= comment.content %>
+  </br>
 <% end %>
 
 <br/>
 <br/>
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%= link_to 'Editar', edit_post_path(@post) %> |
+<a href="javascript:history.back()">Volver</a>

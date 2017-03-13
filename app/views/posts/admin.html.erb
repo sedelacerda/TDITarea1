@@ -1,3 +1,5 @@
+<p id="notice"><%= notice %></p>
+
 <style>
 h1 {
   display: inline-block;
@@ -20,9 +22,12 @@ h1 {
 
 <p id="notice"><%= notice %></p>
 
+<div class="container">
+<%= link_to 'Nueva noticia', new_post_path , :class => "btn btn-lg btn-primary btn-block" %>
+</div>
+
 <% @posts.each do |post| %>
 <div class="container">
-
   <!-- Main component for a primary marketing message or call to action -->
   <div class="jumbotron">
     <h1><%= post.title %></h1> <span class="label label-primary label-as-badge lb-md"><%= post.comments.count %></span>
@@ -34,9 +39,9 @@ h1 {
         <%= post.body %>
       <% end %>
     </h4>
-    <p>
-      <%= link_to 'Ver noticia »', post, :class => "btn btn-lg btn-primary" %>
-    </p>
+    <%= link_to 'Show', post %>
+    <%= link_to 'Edit', edit_post_path(post) %>
+    <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 
 </div> <!-- /container -->

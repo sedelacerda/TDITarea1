@@ -7,6 +7,10 @@ class PostsController < ApplicationController
     @posts = Post.order(created_at: :desc).first(10)
   end
 
+  def admin
+    @posts = Post.order(created_at: :desc)
+  end
+
   # GET /posts/1
   # GET /posts/1.json
   def show
@@ -57,7 +61,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to admin_url, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

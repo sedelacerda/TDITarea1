@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+
+<style>
+body {
+  min-height: 2000px;
+  padding-top: 70px;
+}
+h4 {
+  display: inline-block;
+}
+.btn:visited {
+color: #FFF
+}
+</style>
+
 <html>
   <head>
     <title>TDITarea1</title>
@@ -9,6 +23,26 @@
   </head>
 
   <body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">TDI News</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="<%= "active" if (params[:controller] == "posts") and (params[:action] == "index") %>"><%= link_to 'Home', posts_path %></li>
+            <li class="<%= "active" if (params[:controller] == "posts") and (params[:action] == "admin") %>"><%= link_to 'Administrar', admin_path %></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>
