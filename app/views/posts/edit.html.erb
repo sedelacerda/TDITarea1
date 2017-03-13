@@ -1,6 +1,13 @@
-<h1>Editing Post</h1>
+<div class="container">
+  <h1>Editar noticia</h1>
 
-<%= render 'form', post: @post %>
+  <!-- Main component for a primary marketing message or call to action -->
+  <div class="jumbotron">
 
-<%= link_to 'Ver noticia', @post %> |
-<a href="javascript:history.back()">Volver</a>
+    <%= render 'form', post: @post %>
+
+    <%= link_to 'Ver noticia', @post %> |
+    <a href="javascript:history.back()">Volver</a>
+
+  </div>
+</div>
